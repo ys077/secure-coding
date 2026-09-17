@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Coding Lab - Buffer Overflow</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Navigation -->
+        <nav id="navbar" class="hidden">
+            <div class="nav-brand">Secure Coding Lab</div>
+            <ul class="nav-links">
+                <li><a href="#" id="nav-dashboard">Dashboard</a></li>
+                <li><a href="#" id="nav-demo">Buffer Overflow Demo</a></li>
+                <li><a href="#" id="nav-debugging">Debugging Analysis</a></li>
+                <li><a href="#" id="nav-logout">Logout</a></li>
+            </ul>
+        </nav>
+
+        <main id="main-content">
+            <!-- Login Page -->
+            <section id="login-page" class="view active">
+                <div class="card login-card">
+                    <h2>Login</h2>
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" required>
+                        </div>
+                        <p id="login-error" class="error hidden">Invalid credentials.</p>
+                        <button type="submit" class="btn primary">Login</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Dashboard Page -->
+            <section id="dashboard-page" class="view hidden">
+                <div class="card">
+                    <h1>Secure Coding Lab</h1>
+                    <h2>Buffer Overflow Vulnerability Demonstration</h2>
+                    <p>A buffer overflow occurs when more data is supplied to a fixed-size memory buffer than it can hold. This demonstration simulates the condition using an 8-byte buffer.</p>
+                    
+                    <ul class="info-list">
+                        <li><strong>Buffer Size:</strong> 8 bytes</li>
+                        <li><strong>Vulnerability:</strong> Buffer Overflow</li>
+                        <li><strong>Demonstration Type:</strong> Educational Simulation</li>
+                        <li><strong>Debugging Tool:</strong> GDB / OnlineGDB</li>
+                    </ul>
+                    
+                    <button id="btn-open-demo" class="btn primary">Open Buffer Overflow Demo</button>
+                </div>
+            </section>
+
+            <!-- Buffer Overflow Demo Page -->
+            <section id="demo-page" class="view hidden">
+                <div class="card">
+                    <h2>Buffer Overflow Demonstration</h2>
+                    
+                    <div class="form-group">
+                        <label for="buffer-input">Enter Test Input</label>
+                        <input type="text" id="buffer-input" placeholder="Type input here...">
+                        <button id="btn-run-test" class="btn primary mt-10">Run Buffer Test</button>
+                    </div>
+
+                    <div id="status-panel" class="status-panel safe">
+                        <h3 id="status-text">Buffer Status: SAFE</h3>
+                        <div id="fault-details" class="hidden">
+                            <p><strong>Buffer Size:</strong> 8 bytes</p>
+                            <p><strong>Input Length:</strong> <span id="out-length"></span> <span id="out-length-label">characters</span></p>
+                            <p><strong>Excess Data:</strong> <span id="out-excess"></span> <span id="out-excess-label">characters</span></p>
+                            <p>Memory boundary exceeded.</p>
+                            <p class="fault-status">FAULT STATUS: DETECTED</p>
+                        </div>
+                    </div>
+
+                    <div class="memory-visualization">
+                        <h3>BUFFER MEMORY</h3>
+                        <div class="memory-blocks" id="memory-blocks">
+                            <!-- Memory blocks injected by JS -->
+                        </div>
+                        <div class="memory-labels">
+                            <span class="label-safe">Valid Buffer Area</span>
+                            <span class="label-danger hidden" id="label-overflow">Overflow Area</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Debugging Analysis Page -->
+            <section id="debugging-page" class="view hidden">
+                <div class="card">
+                    <h2>Debugging Analysis</h2>
+                    <div class="alert warning">
+                        <strong>Web Application Demonstration = Simulation</strong><br>
+                        <strong>Actual C/GDB Demonstration = Real memory-level behavior</strong>
+                    </div>
+                    
+                    <p>The actual memory-level behavior is demonstrated using the vulnerable C program in OnlineGDB. Do NOT attempt to run GDB inside the browser.</p>
+                    
+                    <div class="code-block">
+                        <pre><code>char buffer[8];
+char input[100];
+
+// ... input reading ...
+
+strcpy(buffer, input);</code></pre>
+                    </div>
+
+                    <h3>Debugging Procedure</h3>
+                    <ol>
+                        <li>Set breakpoint at <code>strcpy()</code></li>
+                        <li>Run the program</li>
+                        <li>Enter oversized input</li>
+                        <li>Observe buffer contents</li>
+                        <li>Execute <code>next</code></li>
+                        <li>Execute <code>continue</code></li>
+                        <li>Observe <code>SIGSEGV</code> / Segmentation fault</li>
+                    </ol>
+
+                    <h3>GDB Commands</h3>
+                    <div class="code-block">
+                        <pre><code>break 17
+next
+continue</code></pre>
+                    </div>
+
+                    <h3>Expected Result</h3>
+                    <div class="code-block error-block">
+                        <pre><code>Program received signal SIGSEGV, Segmentation fault.</code></pre>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
