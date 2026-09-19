@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload & Validate - Buffer Lab</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="app-logo">BUFFER LAB</div>
+      <nav class="nav-links">
+        <a href="test.html">Test Input</a>
+        <a href="#" id="logout-btn">Logout</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h1 class="mb-1">Upload & Validate Input</h1>
+      <p class="text-muted mb-4">Submit your content for validation.</p>
+
+      <div class="tabs">
+        <div class="tab active" data-target="tab-text">Text</div>
+        <div class="tab" data-target="tab-image">Image</div>
+        <div class="tab" data-target="tab-audio">Audio</div>
+        <div class="tab" data-target="tab-video">Video</div>
+      </div>
+
+      <div class="card">
+        <!-- TEXT TAB -->
+        <div class="tab-pane active" id="tab-text">
+          <div class="form-group">
+            <label class="form-label">Enter your text</label>
+            <textarea
+              id="text-input"
+              class="form-control"
+              placeholder="Type here..."
+            ></textarea>
+            <div
+              class="d-flex justify-between mt-2 text-muted"
+              style="font-size: 0.85rem"
+            >
+              <span>Maximum 8 characters</span>
+              <span id="text-counter">0 / 8 characters</span>
+            </div>
+          </div>
+
+          <div id="text-status" class="status-panel">
+            <div class="status-title">
+              <svg
+                id="text-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></svg>
+              <span id="text-status-heading">Status</span>
+            </div>
+            <p id="text-status-desc" class="mt-2"></p>
+            <div
+              class="status-details"
+              id="text-status-details"
+              style="display: none"
+            ></div>
+          </div>
+        </div>
+
+        <!-- IMAGE TAB -->
+        <div class="tab-pane" id="tab-image">
+          <div class="upload-zone">
+            <input
+              type="file"
+              id="image-input"
+              class="upload-input-file"
+              accept="image/*"
+            />
+            <div class="upload-zone-title">Upload your image</div>
+            <p>Drag & drop or browse</p>
+            <p style="font-size: 0.85rem">
+              PNG, JPG, JPEG, WEBP<br />Maximum file size: 1 MB
+            </p>
+          </div>
+
+          <div id="image-status" class="status-panel">
+            <div class="status-title">
+              <svg
+                id="image-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></svg>
+              <span id="image-status-heading">Status</span>
+            </div>
+            <p id="image-status-desc" class="mt-2"></p>
+            <div
+              class="status-details"
+              id="image-status-details"
+              style="display: none"
+            ></div>
+          </div>
+        </div>
+
+        <!-- AUDIO TAB -->
+        <div class="tab-pane" id="tab-audio">
+          <div class="upload-zone">
+            <input
+              type="file"
+              id="audio-input"
+              class="upload-input-file"
+              accept="audio/*"
+            />
+            <div class="upload-zone-title">Upload an audio file</div>
+            <p>Drag & drop or browse</p>
+            <p style="font-size: 0.85rem">
+              MP3, WAV, OGG, M4A<br />Maximum file size: 3 MB
+            </p>
+          </div>
+
+          <div id="audio-status" class="status-panel">
+            <div class="status-title">
+              <svg
+                id="audio-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></svg>
+              <span id="audio-status-heading">Status</span>
+            </div>
+            <p id="audio-status-desc" class="mt-2"></p>
+            <div
+              class="status-details"
+              id="audio-status-details"
+              style="display: none"
+            ></div>
+          </div>
+        </div>
+
+        <!-- VIDEO TAB -->
+        <div class="tab-pane" id="tab-video">
+          <div class="upload-zone">
+            <input
+              type="file"
+              id="video-input"
+              class="upload-input-file"
+              accept="video/*"
+            />
+            <div class="upload-zone-title">Upload a video</div>
+            <p>Drag & drop or browse</p>
+            <p style="font-size: 0.85rem">
+              MP4, WEBM, MOV<br />Maximum file size: 6 MB
+            </p>
+          </div>
+
+          <div id="video-status" class="status-panel">
+            <div class="status-title">
+              <svg
+                id="video-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></svg>
+              <span id="video-status-heading">Status</span>
+            </div>
+            <p id="video-status-desc" class="mt-2"></p>
+            <div
+              class="status-details"
+              id="video-status-details"
+              style="display: none"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/test.js"></script>
+  </body>
+</html>
